@@ -13,6 +13,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
 import org.zerock.service.BoardService;
 
+/*
+    Task        URL             Method  Parameter   From        URL이동
+    전체목록    /board/list         GET
+    등록처리    /board/register     POST    모든 항목   입력화면 필요     이동
+    조회      /board/get          GET     bno=123
+    삭제처리    /board/remove       POST    bno      입력화면 필요      이동
+    수정처리    /board/modify       POST    모든 항목   입력화면 필요     이동
+ */
 @Controller
 @Log4j
 @RequestMapping("/board/*")
@@ -28,6 +36,10 @@ public class BoardController {
         model.addAttribute("list", service.getList());
     }
 
+    /*
+        RedirectAttributes는 파라미터로 선언해서 사용하고, addFlashAttribute(이름, 값)
+        메서드를 이용해서 화면에 한 번만 사용하고 다음에는 사용되지 않는 데이터를 전달하기 위해 사용
+     */
     @PostMapping("/register")
     public String register(BoardVO board, RedirectAttributes rttr) {
         log.info("register : " + board);
@@ -36,6 +48,7 @@ public class BoardController {
 
         rttr.addFlashAttribute("result", board.getBno());
 
+        // redirect: -> response.sendRedirect()
         return "redirect:/board/list";
     }
 

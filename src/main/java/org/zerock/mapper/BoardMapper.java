@@ -7,15 +7,21 @@ import java.util.List;
 
 public interface BoardMapper {
     // @Select("select * from tbl_board where bno > 0")
+    //  -> XML에서 SQL문 처리하였으므로 제거
     public List<BoardVO> getList();
 
+
+    // insert만 처리되고 생성된 PK 값을 알 필요가 없는 경우
     public void insert(BoardVO board);
 
+    // insert문이 실행되고 생성된 PK 값을 알아야 하는 경우
     public void insertSelectKey(BoardVO board);
 
     public BoardVO read(Long bno);
 
+    // 정상 삭제되면 1, 해당 게시물이 없으면 0 리턴
     public int delete(Long bno);
 
+    // 수정되면 1 리턴
     public int update(BoardVO board);
 }
