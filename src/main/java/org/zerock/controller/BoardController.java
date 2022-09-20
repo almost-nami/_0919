@@ -36,6 +36,11 @@ public class BoardController {
         model.addAttribute("list", service.getList());
     }
 
+    @GetMapping("/register")
+    public void register() {
+
+    }
+
     /*
         RedirectAttributes는 파라미터로 선언해서 사용하고, addFlashAttribute(이름, 값)
         메서드를 이용해서 화면에 한 번만 사용하고 다음에는 사용되지 않는 데이터를 전달하기 위해 사용
@@ -52,9 +57,9 @@ public class BoardController {
         return "redirect:/board/list";
     }
 
-    @GetMapping("/get")
+    @GetMapping({"/get", "/modify"})
     public void get(@RequestParam("bno") Long bno, Model model) {
-        log.info("/get");
+        log.info("/get or modify");
 
         model.addAttribute("board", service.get(bno));
     }
