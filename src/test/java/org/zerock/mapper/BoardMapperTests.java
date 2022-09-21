@@ -90,4 +90,7 @@ public class BoardMapperTests {
         list.forEach(board -> log.info(board.getBno()));
     }
 
+
+
+
 }

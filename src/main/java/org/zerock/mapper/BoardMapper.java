@@ -27,4 +27,7 @@ public interface BoardMapper {
 
     // 수정되면 1 리턴
     public int update(BoardVO board);
+
+    // 전체 개수 구하기
+    public int getTotalCount(Criteria cri);
 }
